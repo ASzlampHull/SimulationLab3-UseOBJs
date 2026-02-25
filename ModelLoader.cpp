@@ -18,7 +18,7 @@ void ModelLoader::LoadModels()
 	for (int modelCount = 0; modelCount < objParser.GetParsedModelOBJs().size(); modelCount++) {
 
 		ModelData modelData;
-		modelData.name = objParser.GetParsedModelOBJs()[modelCount].name;
+		modelData.name = objParser.GetParsedModelOBJs()[modelCount].configName;
 		modelData.objData = objParser.GetParsedModelOBJs()[modelCount];
 		
 		// Find corresponding MTL data by name
