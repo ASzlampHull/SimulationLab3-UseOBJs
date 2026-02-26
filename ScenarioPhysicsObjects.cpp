@@ -53,10 +53,14 @@ void ScenarioPhysicsObjects::CreatePhysicsObjects()
 
 void ScenarioPhysicsObjects::UpdatePhysicsObjects()
 {
-	// Apply a generic force for DEBUGGING
-	glm::vec3 genForce = glm::vec3(posX, 0.0f, 0.0f);
+	glm::vec3 gravityForce = glm::vec3(0.0f, 9.81f, 0.0f);
+	int i = 0;
 	for (auto& physicsObject : physicsObjects) {
-		physicsObject.Update(renderer->GetPhysicsTimeStep(), genForce);
+		if (i == 2) { // Only apply to first two spheres.
+			gravityForce = glm::vec3(0.0f);
+		}
+		physicsObject.Update(renderer->GetPhysicsTimeStep(), gravityForce);
+		i++;
 	}
 }
 

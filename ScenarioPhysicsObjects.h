@@ -8,7 +8,6 @@ class ScenarioPhysicsObjects : public Scenario
 {
 private:
 	std::vector<PhysicsObject> physicsObjects;
-	float posX = 0.01f;
 public:
 	ScenarioPhysicsObjects(Renderer* renderer) {
 		this->renderer = renderer;
