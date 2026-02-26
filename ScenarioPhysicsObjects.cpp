@@ -1,11 +1,14 @@
 #include "ScenarioPhysicsObjects.h"
 #include "Renderer.h"
 #include "InputManager.h"
+#include "Model.h"
 
 void ScenarioPhysicsObjects::OnLoad()
 {
 	std::cout << "Loading Physics Objects Scenario" << name << std::endl;
 	renderer->SetNoTextureModels();
+	CreatePhysicsObjects();
+
 	/*std::vector<std::string> sjgFilePaths;
 	std::vector<Transformations> transformations;
 	sjgFilePaths.push_back("models/PhysicsObjects/sphere.sjg");
@@ -22,11 +25,43 @@ void ScenarioPhysicsObjects::OnLoad()
 
 void ScenarioPhysicsObjects::OnUpdate(float deltaTime, const InputManager& input)
 {
+	posX += deltaTime * 0.5f; // Move objects to the right over time
 	renderer->UpdatePhysicsTime();
 	renderer->DrawFrame();
+	SendPhysicsObjectsToModels();
 }
 
 void ScenarioPhysicsObjects::OnUnload()
 {
 	std::cout << "Unloading Physics Objects Scenario" << name << std::endl;
 }
+
+void ScenarioPhysicsObjects::CreatePhysicsObjects()
+{
+	renderer->GetResourceManager().GetModels();
+	for (const auto& pair : renderer->GetResourceManager().GetModels()) {
+		const auto& model = pair.second;
+		Transformations transform = model.GetTransformations();
+		
+		physicsObjects.push_back(PhysicsObject(transform, glm::vec3(0.0f), 1.0f));
+	}
+
+	physicsObjects[0].CreateSphereCollider(1.0f);
+	physicsObjects[1].CreateSphereCollider(1.0f);
+	physicsObjects[2].CreatePlaneCollider(glm::vec3(0.0f, -1.0f, 0.0f), 5.0f);
+}
+
+void ScenarioPhysicsObjects::SendPhysicsObjectsToModels()
+{
+	renderer->GetResourceManager().GetModels();
+	int i = 0;
+	for (auto& pair : renderer->GetResourceManager().GetModels()) {
+		auto& model = pair.second; 
+		Transformations transform;
+		physicsObjects[i].GetTransformations(transform);
+		transform.position = glm::vec3(posX, 0.0f, 0.0f); // Move all models to the right for DEBUGGING
+		model.SetTransformations(transform);
+		i++;
+	}
+}
+
