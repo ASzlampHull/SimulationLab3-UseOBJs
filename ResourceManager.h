@@ -28,6 +28,7 @@ public:
 	void ClearModels();
 
 	void CreateSJGModels(const std::vector<std::string>& sjgFilePaths, const std::vector<Transformations> transformations);
+	void CreateNoTextureModel();
 
 	std::unordered_map<std::string, Model>& GetModels() { return models; };
 	const VkDescriptorPool GetMainDescriptorPool() const;

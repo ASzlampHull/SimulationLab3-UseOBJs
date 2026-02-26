@@ -5,7 +5,8 @@
 void ScenarioPhysicsObjects::OnLoad()
 {
 	std::cout << "Loading Physics Objects Scenario" << name << std::endl;
-	std::vector<std::string> sjgFilePaths;
+	renderer->SetNoTextureModels();
+	/*std::vector<std::string> sjgFilePaths;
 	std::vector<Transformations> transformations;
 	sjgFilePaths.push_back("models/PhysicsObjects/sphere.sjg");
 	Transformations transform = { glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(1.0f) };
@@ -16,6 +17,7 @@ void ScenarioPhysicsObjects::OnLoad()
 	renderer->GetResourceManager().CreateSJGModels(sjgFilePaths, transformations);
 	renderer->GetResourceManager().CreateVertexIndexBuffers(renderer->GetCoreVulkanPtr(), renderer->GetCommandPoolVulkanPtr());
 	renderer->GetResourceManager().CreateTextures(renderer->GetCoreVulkanPtr(), renderer->GetCommandPoolVulkanPtr(), renderer->GetPipelineVulkanPtr(), renderer->GetUniformBufferObject());
+	*/
 }
 
 void ScenarioPhysicsObjects::OnUpdate(float deltaTime, const InputManager& input)

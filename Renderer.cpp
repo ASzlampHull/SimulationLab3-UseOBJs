@@ -295,6 +295,11 @@ void Renderer::SetLightDarkColor(float lightColor[3], float darkColor[3])
     lightDarkColor.second = glm::vec3(darkColor[0], darkColor[1], darkColor[2]);
 }
 
+void Renderer::SetNoTextureModels()
+{
+    resourceManager.CreateNoTextureModel();
+}
+
 void Renderer::UpdatePhysicsTime()
 {
     physicsAccumulator += deltaTime;

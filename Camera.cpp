@@ -18,8 +18,8 @@ const void Camera::InitialiseCamera(CameraSettings& camera, const glm::vec3& eye
 }
 
 void Camera::InintialiseCameraSet() {
-	glm::vec3 cameraEyePos = glm::vec3(0.0f, -50.0f, -780.0f);
-	glm::vec3 cameraCentrePos = glm::vec3(0.0f, -50.0f, 0.0f);
+	glm::vec3 cameraEyePos = glm::vec3(-2.0f, -3.5f, -20.0f);
+	glm::vec3 cameraCentrePos = glm::vec3(-2.0f, -3.5f, 0.0f);
 	glm::vec3 cameraUpPos = glm::vec3(0.0f, -1.0f, 0.0f);
 	CameraSettings cam1;
 	InitialiseCamera(cam1, cameraEyePos, cameraCentrePos, cameraUpPos);

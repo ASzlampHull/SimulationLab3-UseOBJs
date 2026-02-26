@@ -124,6 +124,14 @@ void ResourceManager::CreateSJGModels(const std::vector<std::string>& sjgFilePat
 	}
 }
 
+void ResourceManager::CreateNoTextureModel()
+{
+	for (auto& pair : models) {
+		auto& model = pair.second;
+		model.SetHasNoTexture(true);
+	}
+}
+
 const VkDescriptorPool ResourceManager::GetMainDescriptorPool() const
 {
 	const auto& pair = models.begin();

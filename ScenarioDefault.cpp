@@ -17,5 +17,5 @@ void ScenarioDefault::OnUpdate(float deltaTime, const InputManager& input) {
 
 void ScenarioDefault::OnUnload() {
 	std::cout << "Unloading Default Scenario" << name << std::endl;
-	renderer->GetResourceManager().ClearModels();
+	//renderer->GetResourceManager().ClearModels();
 }

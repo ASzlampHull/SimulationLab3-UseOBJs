@@ -110,6 +110,7 @@ public:
     void SetScenario(std::unique_ptr<Scenario> scenario);
     void SetClearColor(float r, float g, float b, float a);
     void SetLightDarkColor(float lightColor[3], float darkColor[3]);
+	void SetNoTextureModels();
     void UpdatePhysicsTime();
     void SetPhysicsTimeStep(float timeStep, bool enabled);
 
