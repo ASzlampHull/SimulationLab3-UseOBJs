@@ -5,6 +5,13 @@ void PhysicsObject::Update(float timeStep, glm::vec3 force)
 	CalculateForces(timeStep, force);
 }
 
+void PhysicsObject::UpdateCollision(Collider* other) {
+	if (collider) {
+		collider->CalculateCollision(other, velocity);
+		collider->GetTransformations(transformations);
+	}
+}
+
 void PhysicsObject::CalculateForces(float timeStep, glm::vec3 force)
 {
 	//Calculate Acceleration

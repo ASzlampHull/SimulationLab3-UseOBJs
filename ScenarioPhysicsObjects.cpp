@@ -48,7 +48,7 @@ void ScenarioPhysicsObjects::CreatePhysicsObjects()
 
 	physicsObjects[0].CreateSphereCollider(1.0f);
 	physicsObjects[1].CreateSphereCollider(1.0f);
-	physicsObjects[2].CreatePlaneCollider(glm::vec3(0.0f, -1.0f, 0.0f), 5.0f);
+	physicsObjects[2].CreatePlaneCollider(glm::vec3(0.0f, -1.0f, 0.0f), 0.10f);
 }
 
 void ScenarioPhysicsObjects::UpdatePhysicsObjects()
@@ -61,6 +61,15 @@ void ScenarioPhysicsObjects::UpdatePhysicsObjects()
 		}
 		physicsObject.Update(renderer->GetPhysicsTimeStep(), gravityForce);
 		i++;
+	}
+
+	// Checks for collisions between objects
+	for (size_t i = 0; i < physicsObjects.size(); ++i) {
+		for (size_t j = i + 1; j < physicsObjects.size(); ++j) {
+			Collider* colliderA = nullptr;
+			physicsObjects[j].GetCollider(colliderA);
+			physicsObjects[i].UpdateCollision(colliderA);
+		}
 	}
 }
 

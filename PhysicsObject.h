@@ -18,9 +18,11 @@ public:
 	}
 
 	void Update(float deltaTime, glm::vec3 force);
+	void UpdateCollision(Collider* other);
 	void CalculateForces(float deltaTime, glm::vec3 force);
 	void CreateSphereCollider(float radius);
 	void CreatePlaneCollider(const glm::vec3& normal, float distance);
 
 	void GetTransformations(Transformations& outTransformations) const { outTransformations = transformations; }
+	void GetCollider(Collider*& outCollider) const { outCollider = collider.get(); }
 };
