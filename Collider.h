@@ -15,4 +15,6 @@ public:
 	Collider(const Transformations transformations) : transformations(transformations) {};
 	virtual ~Collider() = default;
 	virtual void Update(float deltaTime) = 0;
+
+	void UpdateTransformations(const Transformations& newTransformations) { transformations = newTransformations; }
 };
