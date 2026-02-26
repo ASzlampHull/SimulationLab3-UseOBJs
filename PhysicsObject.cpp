@@ -1,7 +1,20 @@
 #include "PhysicsObject.h"
 
-void PhysicsObject::Update(float deltaTime)
+void PhysicsObject::Update(float timeStep, glm::vec3 force)
 {
+	CalculateForces(timeStep, force);
+}
+
+void PhysicsObject::CalculateForces(float timeStep, glm::vec3 force)
+{
+	//Calculate Acceleration
+	glm::vec3 acceleration = force / mass;
+
+	//Calculate Velocity
+	velocity += acceleration * timeStep;
+
+	//Calculate Position
+	transformations.position += velocity * timeStep;
 }
 
 void PhysicsObject::CreateSphereCollider(float radius) {

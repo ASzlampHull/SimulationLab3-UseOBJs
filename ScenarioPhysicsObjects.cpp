@@ -25,9 +25,9 @@ void ScenarioPhysicsObjects::OnLoad()
 
 void ScenarioPhysicsObjects::OnUpdate(float deltaTime, const InputManager& input)
 {
-	posX += deltaTime * 0.5f; // Move objects to the right over time
 	renderer->UpdatePhysicsTime();
 	renderer->DrawFrame();
+	UpdatePhysicsObjects();
 	SendPhysicsObjectsToModels();
 }
 
@@ -51,17 +51,26 @@ void ScenarioPhysicsObjects::CreatePhysicsObjects()
 	physicsObjects[2].CreatePlaneCollider(glm::vec3(0.0f, -1.0f, 0.0f), 5.0f);
 }
 
+void ScenarioPhysicsObjects::UpdatePhysicsObjects()
+{
+	// Apply a generic force for DEBUGGING
+	glm::vec3 genForce = glm::vec3(posX, 0.0f, 0.0f);
+	for (auto& physicsObject : physicsObjects) {
+		physicsObject.Update(renderer->GetPhysicsTimeStep(), genForce);
+	}
+}
+
 void ScenarioPhysicsObjects::SendPhysicsObjectsToModels()
 {
 	renderer->GetResourceManager().GetModels();
 	int i = 0;
 	for (auto& pair : renderer->GetResourceManager().GetModels()) {
-		auto& model = pair.second; 
+		auto& model = pair.second;
 		Transformations transform;
 		physicsObjects[i].GetTransformations(transform);
-		transform.position = glm::vec3(posX, 0.0f, 0.0f); // Move all models to the right for DEBUGGING
 		model.SetTransformations(transform);
 		i++;
 	}
 }
+ 
 

@@ -107,6 +107,9 @@ public:
 	const PipelineVulkan* GetPipelineVulkanPtr() const { return pipelineVulkan; };
 	UniformVulkan& GetUniformBufferObject() { return uniformBufferObject; };
 
+	float GetPhysicsTimeStep() const { return fixedPhysicsTimeStep; }
+	float GetPhysicsAccumulator() const { return physicsAccumulator; }
+
     void SetScenario(std::unique_ptr<Scenario> scenario);
     void SetClearColor(float r, float g, float b, float a);
     void SetLightDarkColor(float lightColor[3], float darkColor[3]);

@@ -17,7 +17,8 @@ public:
 		: transformations(transformations), velocity(velocity), mass(mass) {
 	}
 
-	void Update(float deltaTime);
+	void Update(float deltaTime, glm::vec3 force);
+	void CalculateForces(float deltaTime, glm::vec3 force);
 	void CreateSphereCollider(float radius);
 	void CreatePlaneCollider(const glm::vec3& normal, float distance);
 

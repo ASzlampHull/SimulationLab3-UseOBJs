@@ -8,8 +8,8 @@ private:
 public:
 	SphereCollider(float radius, Transformations transformations) : radius(radius), Collider(transformations) {};
 	virtual ~SphereCollider() = default;
-	virtual void Update(float deltaTime) override {
-		// Sphere collider does not need to update over time, so this can be left empty.
+	virtual void Update(float timeStep) override {
+		
 	}
 	float GetRadius() const { return radius; }
 };
